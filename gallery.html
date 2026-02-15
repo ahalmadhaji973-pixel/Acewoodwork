@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Gallery | Ace Woodwork & Decor</title>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark: #1c1410; --mid: #2b1e16; --light: #8b5e3c; --gold: #c9a24d;
+            --bg: #1c1410; --card: #2a1d16; --text: #f5f1ed;
+        }
+        body.light-mode { --bg: #f6efe9; --card: #ffffff; --text: #2b1e16; }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; overflow-x: hidden; }
+        body.rtl { direction: rtl; text-align: right; }
+
+        [lang="ar"] { display: none; }
+        body.rtl [lang="ar"] { display: inline-block; }
+        body.rtl [lang="en"] { display: none; }
+
+        /* Navigation */
+        .navbar { position: fixed; top: 0; width: 100%; padding: 20px 6%; background: rgba(43, 30, 22, 0.95); backdrop-filter: blur(10px); display: flex; justify-content: space-between; align-items: center; z-index: 3000; border-bottom: 1px solid rgba(201, 162, 77, 0.1); }
+        .logo { font-size: 1.4rem; font-weight: bold; color: var(--gold); text-decoration: none; }
+        .nav { list-style: none; display: flex; gap: 22px; }
+        .nav a { font-weight: 600; color: #f5f1ed; text-decoration: none; transition: 0.3s; }
+        .nav a:hover { color: var(--gold); }
+
+        /* Header Section */
+        .page-header { padding: 150px 10% 60px; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1600'); background-size: cover; background-position: center; }
+        .page-header h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 10px; }
+        .page-header h1 span { color: var(--gold); }
+
+        /* Gallery Grid */
+        .gallery-container { padding: 60px 8%; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .gallery-item { position: relative; height: 350px; border-radius: 12px; overflow: hidden; cursor: pointer; background: var(--card); border: 1px solid rgba(201,162,77,0.1); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: 0.4s; padding: 20px; text-align: center; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay h3 { color: var(--gold); font-size: 1.2rem; margin-bottom: 8px; }
+        .gallery-overlay p { font-size: 0.9rem; opacity: 0.8; }
+
+        /* Lightbox (مكبر الصور) */
+        #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 5000; display: none; justify-content: center; align-items: center; padding: 40px; }
+        #lightbox img { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        #lightbox.active { display: flex; }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 2rem; cursor: pointer; }
+
+        /* Loader */
+        #loader { position: fixed; inset: 0; background: var(--dark); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: 0.5s; }
+        .spin { width: 50px; height: 50px; border: 3px solid var(--gold); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Controls */
+        .controls { position: fixed; bottom: 25px; right: 25px; display: flex; flex-direction: column; gap: 12px; z-index: 4000; }
+        .control-btn { width: 50px; height: 50px; border-radius: 50%; background: var(--gold); border: none; color: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+
+        footer { padding: 40px; text-align: center; background: var(--mid); border-top: 2px solid var(--gold); margin-top: 50px; }
+    </style>
+</head>
+
+<body>
+
+<div id="loader"><div class="spin"></div></div>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">Ace Woodwork and decor</a>
+    <ul class="nav">
+        <li><a href="index.html"><span lang="en">HOME</span><span lang="ar">الرئيسية</span></a></li>
+        <li><a href="services.html"><span lang="en">SERVICES</span><span lang="ar">خدماتنا</span></a></li>
+        <li><a href="gallery.html" style="color:var(--gold)"><span lang="en">GALLERY</span><span lang="ar">أعمالنا</span></a></li>
+    </ul>
+</nav>
+
+<header class="page-header">
+    <h1 data-aos="fade-down"><span lang="en">OUR <span>PORTFOLIO</span></span><span lang="ar">معرض <span>أعمالنا</span></span></h1>
+    <p data-aos="fade-up"><span lang="en">Masterpieces Crafted with Precision</span><span lang="ar">قطع فنية صُنعت بكل دقة وإتقان</span></p>
+</header>
+
+<main class="gallery-container">
+    <div class="gallery-grid" id="main-gallery-grid">
+        </div>
+</main>
+
+<div id="lightbox" onclick="this.classList.remove('active')">
+    <span class="close-lightbox">&times;</span>
+    <img src="" id="lightbox-img">
+</div>
+
+<footer>
+    <p>© 2026 Ace Woodwork & Decor. All Rights Reserved.</p>
+</footer>
+
+<div class="controls">
+    <button class="control-btn" id="langBtn" onclick="toggleLanguage()">العربية</button>
+    <button class="control-btn" onclick="document.body.classList.toggle('light-mode')"><i class="fas fa-adjust"></i></button>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    const GITHUB_USER = "Ace313780"; 
+    const REPO_NAME = "AceWoodwork";
+
+    async function loadGallery() {
+        const grid = document.getElementById('main-gallery-grid');
+        try {
+            // جلب قائمة الملفات من مجلد الجاليري في GitHub
+            const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/gallery`);
+            const files = await response.json();
+
+            if(!Array.isArray(files)) throw "Empty";
+
+            grid.innerHTML = ''; // تنظيف المحتوى التجريبي
+
+            for (let file of files) {
+                if (!file.name.endsWith('.md')) continue;
+
+                const res = await fetch(file.download_url);
+                const text = await res.text();
+                const data = jsyaml.load(text.split('---')[1]);
+
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.setAttribute('data-aos', 'zoom-in');
+                item.onclick = () => openLightbox(data.image);
+
+                item.innerHTML = `
+                    <img src="${data.image}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h3 lang="en">${data.g_title_en || 'Project'}</h3>
+                        <h3 lang="ar">${data.g_title_ar || 'مشروع'}</h3>
+                        <p lang="en">Click to view</p>
+                        <p lang="ar">اضغط للعرض</p>
+                    </div>
+                `;
+                grid.appendChild(item);
+            }
+        } catch (e) {
+            grid.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">No projects found. Start adding from the dashboard!</p>';
+        }
+    }
+
+    function openLightbox(src) {
+        const lb = document.getElementById('lightbox');
+        const img = document.getElementById('lightbox-img');
+        img.src = src;
+        lb.classList.add('active');
+    }
+
+    function toggleLanguage() {
+        const isAr = document.body.classList.toggle("rtl");
+        document.getElementById("langBtn").innerText = isAr ? "English" : "العربية";
+        localStorage.setItem("lang", isAr ? "ar" : "en");
+    }
+
+    window.onload = () => {
+        loadGallery();
+        AOS.init({ duration: 800, once: true });
+        if(localStorage.getItem("lang") === "ar") toggleLanguage();
+        setTimeout(() => { document.getElementById('loader').style.opacity='0'; setTimeout(()=>document.getElementById('loader').remove(),500); }, 800);
+    };
+
+    // Netlify Identity Logic
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+        }
+      });
+    }
+</script>
+</body>
+</html>

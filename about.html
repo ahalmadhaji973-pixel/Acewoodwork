@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Ace Woodwork & Decor</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+/* ===== ROOT ===== */
+:root{
+    --dark:#2b1e16;
+    --mid:#4a3428;
+    --light:#8b5e3c;
+    --gold:#c9a24d;
+    --bg:#1c1410;
+    --text:#f5f1ed;
+}
+
+body.light{
+    --bg:#f5f5f5;
+    --text:#1a1a1a;
+    --dark:#ffffff;
+    --mid:#eaeaea;
+}
+
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:radial-gradient(circle at top,#24170f,var(--bg));
+    color:var(--text);
+    transition: .3s;
+    overflow-x: hidden;
+}
+body.rtl { direction: rtl; text-align: right; }
+a{text-decoration:none;color:inherit}
+
+/* نظام تبديل اللغة CSS */
+[lang="ar"] { display: none; }
+body.rtl [lang="ar"] { display: inline-block; }
+body.rtl [lang="en"] { display: none; }
+
+/* ===== NAVBAR ===== */
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:2000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 6%;
+    background:linear-gradient(145deg,var(--dark),var(--mid));
+}
+.logo{
+    font-size:1.3rem;
+    font-weight:bold;
+    color:var(--gold);
+}
+.home-btn{
+    font-weight:600;
+    padding:8px 18px;
+    border-radius:6px;
+    background:linear-gradient(135deg,var(--light),var(--gold));
+    color:#fff;
+    transition:.3s;
+}
+.home-btn i{margin-inline-end:6px}
+.home-btn:hover{
+    transform:translateY(-2px);
+    box-shadow: 0 5px 15px rgba(201, 162, 77, 0.4);
+}
+
+/* ===== HERO SLIDER ===== */
+.hero{
+    position:relative;
+    height:60vh;
+    overflow:hidden;
+}
+.hero-slider{
+    position:absolute;
+    inset:0;
+}
+.slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+}
+.slide.active{
+    opacity:1;
+}
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:1;
+}
+.hero-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color: #fff;
+}
+.hero-content h1{
+    font-size:3.5rem;
+    text-transform: uppercase;
+}
+.hero-content span{
+    color:var(--gold);
+}
+
+/* ===== SECTIONS ===== */
+.section{
+    padding:90px 10%;
+    text-align:center;
+}
+.section h2{
+    font-size:2.5rem;
+    margin-bottom: 20px;
+}
+.section h2 span{color:var(--gold)}
+.section p{
+    margin: 0 auto;
+    max-width: 800px;
+    line-height:1.8;
+    font-size:1.1rem;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+/* ===== INFO GRID ===== */
+.info-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+.info-box{
+    background:linear-gradient(145deg,var(--mid),var(--dark));
+    padding:40px;
+    border-radius:18px;
+    transition:.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.info-box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(0,0,0,0.5);
+}
+.info-box i{
+    font-size:45px;
+    color:var(--gold);
+    margin-bottom:20px;
+}
+.info-box h3{
+    margin-bottom: 15px;
+    color: var(--gold);
+}
+
+/* ===== FLOATING CONTROLS ===== */
+.controls {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 3000;
+}
+body.rtl .controls { right: auto; left: 25px; }
+
+.float-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--light), var(--gold));
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.float-btn:hover { transform: scale(1.1); }
+
+/* ===== FOOTER ===== */
+footer{
+    padding:40px;
+    text-align:center;
+    background:linear-gradient(145deg,var(--dark),var(--mid));
+    border-top: 1px solid rgba(201, 162, 77, 0.2);
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .section { padding: 60px 5%; }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">Ace Woodwork & Decor</div>
+    <a href="index.html" class="home-btn">
+        <i class="fas fa-home"></i> 
+        <span lang="en">Home</span><span lang="ar">الرئيسية</span>
+    </a>
+</nav>
+
+<section class="hero">
+    <div class="hero-slider">
+        <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')"></div>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0')"></div>
+        <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1615874959474-d609969a20ed')"></div>
+    </div>
+    <div class="hero-content">
+        <h1 data-aos="zoom-in" data-aos-duration="1200">
+            <span lang="en">about <span>us</span></span>
+            <span lang="ar">من <span>نحن</span></span>
+        </h1>
+    </div>
+</section>
+
+<section class="section">
+    <h2 data-aos="fade-up">
+        <span lang="en">Who <span>We Are</span></span>
+        <span lang="ar">من <span>نحن</span></span>
+    </h2>
+    <p data-aos="fade-up" data-aos-delay="200">
+        <span lang="en">
+            Ace Woodwork & Decor is a premier architecture and interior design firm dedicated to crafting luxurious spaces. 
+            Whether you are a startup, a homeowner, or a corporate office, we provide bespoke design solutions ranging 
+            from kitchen and bedroom layouts to complete landscape and structural architecture. Our goal is to transform 
+            your vision into a tangible masterpiece through precision and creativity.
+        </span>
+        <span lang="ar">
+            آيس لأعمال الخشب والديكور هي شركة رائدة في الهندسة المعمارية والتصميم الداخلي مكرسة لصناعة مساحات فاخرة. سواء كنت شركة ناشئة، صاحب منزل، أو مكتباً للشركات، فنحن نقدم حلول تصميم مخصصة تتراوح من تصاميم المطابخ وغرف النوم إلى الهندسة المعمارية الإنشائية وتنسيق الحدائق بالكامل. هدفنا هو تحويل رؤيتك إلى تحفة ملموسة من خلال الدقة والإبداع.
+        </span>
+    </p>
+</section>
+
+<section class="section">
+    <h2 data-aos="fade-right">
+        <span lang="en">Our <span>Vision & Mission</span></span>
+        <span lang="ar">رؤيتنا <span>ورسالتنا</span></span>
+    </h2>
+    <div class="info-grid">
+        <div class="info-box" data-aos="flip-left" data-aos-duration="1000">
+            <i class="fas fa-eye"></i>
+            <h3><span lang="en">Our Vision</span><span lang="ar">رؤيتنا</span></h3>
+            <p>
+                <span lang="en">To become the most trusted name in high-end woodwork and modern interior craftsmanship across the globe.</span>
+                <span lang="ar">أن نصبح الاسم الأكثر ثقة في مجال الأعمال الخشبية الراقية والحرفية الداخلية الحديثة في جميع أنحاء العالم.</span>
+            </p>
+        </div>
+        <div class="info-box" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="200">
+            <i class="fas fa-bullseye"></i>
+            <h3><span lang="en">Our Mission</span><span lang="ar">رسالتنا</span></h3>
+            <p>
+                <span lang="en">To deliver superior custom wood solutions that perfectly balance aesthetic beauty with long-lasting durability.</span>
+                <span lang="ar">تقديم حلول خشبية مخصصة وفائقة الجودة توازن بشكل مثالي بين الجمال الجمالي والمتانة طويلة الأمد.</span>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 data-aos="fade-left">
+        <span lang="en">Why <span>Choose Us</span></span>
+        <span lang="ar">لماذا <span>تختارنا؟</span></span>
+    </h2>
+    <div class="info-grid">
+        <div class="info-box" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-hammer"></i>
+            <h3><span lang="en">Expert Craftsmanship</span><span lang="ar">حرفية خبيرة</span></h3>
+            <p>
+                <span lang="en">Precision-driven work using only the most premium wood and materials.</span>
+                <span lang="ar">عمل يعتمد على الدقة باستخدام أجود أنواع الأخشاب والمواد الممتازة فقط.</span>
+            </p>
+        </div>
+        <div class="info-box" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-gem"></i>
+            <h3><span lang="en">Luxury Finish</span><span lang="ar">تشطيب فاخر</span></h3>
+            <p>
+                <span lang="en">Exquisite designs tailored to complement your unique lifestyle and taste.</span>
+                <span lang="ar">تصاميم رائعة مصممة خصيصاً لتكمل نمط حياتك وذوقك الفريد.</span>
+            </p>
+        </div>
+        <div class="info-box" data-aos="fade-up" data-aos-delay="500">
+            <i class="fas fa-clock"></i>
+            <h3><span lang="en">On-Time Delivery</span><span lang="ar">التسليم في الوقت المحدد</span></h3>
+            <p>
+                <span lang="en">We take pride in our punctuality and commitment to project deadlines.</span>
+                <span lang="ar">نحن نفخر بدقتنا في المواعيد والتزامنا بالمواعيد النهائية للمشاريع.</span>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section cta" style="background: linear-gradient(145deg, var(--dark), var(--mid));">
+    <h2 data-aos="zoom-out">
+        <span lang="en">Ready to Build Your <span>Dream Space?</span></span>
+        <span lang="ar">هل أنت مستعد لبناء <span>مساحة أحلامك؟</span></span>
+    </h2>
+    <button class="home-btn" style="margin-top: 30px; padding: 15px 40px;" onclick="location.href='index.html#CONTACT'" data-aos="fade-up">
+        <span lang="en">Get in Touch</span><span lang="ar">تواصل معنا</span>
+    </button>
+</section>
+
+<div class="controls">
+    <button class="float-btn" id="langToggle">AR</button>
+    <button class="float-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+</div>
+
+<footer>
+    <p>
+        <span lang="en">© 2026 Ace Woodwork & Decor | Quality You Can Touch.</span>
+        <span lang="ar">© 2026 آيس لأعمال الخشب والديكور | جودة يمكنك لمسها.</span>
+    </p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+// Initialize AOS
+AOS.init({
+    duration: 1000,
+    once: false,
+    mirror: true
+});
+
+// Slider Logic
+const slides = document.querySelectorAll(".slide");
+let current = 0;
+setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+}, 4500);
+
+// --- نظام تبديل اللغة ---
+const langBtn = document.getElementById("langToggle");
+function toggleLang() {
+    const isAr = document.body.classList.toggle("rtl");
+    langBtn.innerText = isAr ? "EN" : "AR";
+    localStorage.setItem("userLang", isAr ? "ar" : "en");
+    AOS.refresh();
+}
+
+langBtn.onclick = toggleLang;
+
+// استعادة اللغة المفضلة عند التحميل
+if(localStorage.getItem("userLang") === "ar") {
+    document.body.classList.add("rtl");
+    langBtn.innerText = "EN";
+}
+
+// Dark Mode Toggle
+const themeToggle = document.getElementById("themeToggle");
+const icon = themeToggle.querySelector("i");
+
+if(localStorage.theme === "light") {
+    document.body.classList.add("light");
+    icon.classList.replace("fa-moon", "fa-sun");
+}
+
+themeToggle.onclick = () => {
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    localStorage.theme = isLight ? "light" : "dark";
+    if(isLight) {
+        icon.classList.replace("fa-moon", "fa-sun");
+    } else {
+        icon.classList.replace("fa-sun", "fa-moon");
+    }
+};
+</script>
+
+</body>
+</html>

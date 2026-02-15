@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
+<title>Ace Woodwork | Services</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+/* ===== ROOT & GLOBAL (نفس تنسيقاتك الأصلية) ===== */
+:root{ --dark:#2b1e16; --mid:#4a3428; --light:#8b5e3c; --gold:#c9a24d; --bg:#1c1410; --text:#f5f1ed; }
+body.light{ --bg:#f5f5f5; --text:#1a1a1a; --dark:#ffffff; --mid:#eaeaea; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{ font-family:'Segoe UI',sans-serif; background:radial-gradient(circle at top,#24170f,var(--bg)); color:var(--text); transition:.3s; overflow-x: hidden; }
+body.rtl { direction: rtl; text-align: right; }
+[lang="ar"] { display: none; }
+body.rtl [lang="ar"] { display: inline-block; }
+body.rtl [lang="en"] { display: none; }
+
+/* ===== NAVBAR ===== */
+.navbar{ position:sticky; top:0; z-index:2000; display:flex; justify-content:space-between; align-items:center; padding:15px 6%; background:linear-gradient(145deg,var(--dark),var(--mid)); }
+.logo{color:var(--gold);font-weight:bold;font-size:1.3rem}
+.home-btn{ padding:8px 18px; border-radius:25px; background:linear-gradient(145deg,var(--light),var(--gold)); color:#fff; transition: 0.3s; font-weight: bold; }
+
+/* ===== SERVICES GRID ===== */
+.services-header{ text-align:center; padding:80px 20px 40px; }
+.services-header span{color:var(--gold)}
+.services-grid{ padding:40px 8%; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; }
+.service-card{ background:linear-gradient(145deg,var(--mid),var(--dark)); padding:25px; border-radius:18px; text-align:center; cursor:pointer; transition:.4s; border: 1px solid transparent; }
+.service-card:hover, .service-card.active{ transform:translateY(-5px); border-color: var(--gold); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.service-card i{ font-size:30px; color:var(--gold); margin-bottom:10px; }
+
+/* ===== DYNAMIC GALLERY ===== */
+.dynamic-gallery-section { padding: 40px 8%; min-height: 400px; }
+.gallery-title { text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 2px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.gallery-item { position: relative; border-radius: 15px; overflow: hidden; height: 300px; background: var(--mid); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; cursor: pointer; }
+.gallery-item:hover img { transform: scale(1.1); }
+.img-loader { display: none; text-align: center; padding: 50px; font-size: 1.5rem; color: var(--gold); }
+
+/* ===== LIGHTBOX & FLOATING (نفس كودك) ===== */
+.lightbox{ position:fixed; inset:0; background:rgba(0,0,0,.9); display:none; align-items:center; justify-content:center; z-index:5000; }
+.lightbox img{ max-width:90%; max-height:90%; border-radius:12px; }
+.floating{ position:fixed; bottom:25px; right:25px; display:flex; flex-direction:column; gap:15px; z-index:6000; }
+body.rtl .floating { right: auto; left: 25px; }
+.float-btn{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; cursor:pointer; border: none; }
+.whatsapp{background:#25d366} .theme-toggle{ background:linear-gradient(145deg,var(--light),var(--gold)); } .lang-toggle { background: var(--gold); }
+footer{ text-align:center; padding:30px; background:linear-gradient(145deg,var(--dark),var(--mid)); }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">Ace Woodwork & Decor</div>
+    <a href="index.html" class="home-btn">
+        <span lang="en">Home</span><span lang="ar">الرئيسية</span>
+    </a>
+</nav>
+
+<section class="services-header" data-aos="fade-down">
+    <h1>
+        <span lang="en">Our <span>Services</span></span>
+        <span lang="ar">خدماتنا <span>المتميزة</span></span>
+    </h1>
+    <p style="opacity: 0.7; margin-top: 10px;">
+        <span lang="en">Select a category to view our work</span>
+        <span lang="ar">اختر قسماً لمشاهدة أعمالنا</span>
+    </p>
+</section>
+
+<section class="services-grid">
+    <div class="service-card active" onclick="filterGallery('carpentry', this)">
+        <i class="fas fa-hammer"></i>
+        <h3><span lang="en">Carpentry</span><span lang="ar">النجارة</span></h3>
+    </div>
+    <div class="service-card" onclick="filterGallery('kitchen', this)">
+        <i class="fas fa-utensils"></i>
+        <h3><span lang="en">Kitchen</span><span lang="ar">المطابخ</span></h3>
+    </div>
+    <div class="service-card" onclick="filterGallery('cafe', this)">
+        <i class="fas fa-coffee"></i>
+        <h3><span lang="en">Cafe Shops</span><span lang="ar">كافيهات</span></h3>
+    </div>
+    <div class="service-card" onclick="filterGallery('painting', this)">
+        <i class="fas fa-paint-roller"></i>
+        <h3><span lang="en">Painting</span><span lang="ar">الطلاء</span></h3>
+    </div>
+    <div class="service-card" onclick="filterGallery('decor', this)">
+        <i class="fas fa-border-all"></i>
+        <h3><span lang="en">Decor</span><span lang="ar">الديكور</span></h3>
+    </div>
+</section>
+
+<section class="dynamic-gallery-section">
+    <h2 class="gallery-title" id="galleryTitle">
+        <span lang="en">Carpentry <span>Gallery</span></span>
+        <span lang="ar">معرض <span>النجارة</span></span>
+    </h2>
+    
+    <div id="imgLoader" class="img-loader"><i class="fas fa-spinner fa-spin"></i></div>
+    
+    <div class="gallery-grid" id="servicesGallery">
+        </div>
+</section>
+
+<div class="lightbox" id="lightbox"><img id="lightboxImg"></div>
+
+<div class="floating">
+    <button class="float-btn lang-toggle" id="langToggle">AR</button>
+    <div class="float-btn theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></div>
+    <a class="float-btn whatsapp" href="https://wa.me/13139098271" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<footer>© 2026 Ace Woodwork | <span lang="en">All Rights Reserved</span><span lang="ar">جميع الحقوق محفوظة</span></footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 1000, once: true });
+
+// --- إعدادات GitHub ---
+const GITHUB_USER = "Ace313780"; 
+const REPO_NAME = "AceWoodwork";
+const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/services`;
+
+let allServiceImages = [];
+
+async function loadServiceImages() {
+    const loader = document.getElementById("imgLoader");
+    const container = document.getElementById("servicesGallery");
+    loader.style.display = "block";
+    
+    try {
+        const response = await fetch(API_URL);
+        const files = await response.json();
+        
+        allServiceImages = []; // تصفير المصفوفة
+
+        for (const file of files) {
+            if (file.name.endsWith('.md')) {
+                const contentRes = await fetch(file.download_url);
+                const text = await contentRes.text();
+                
+                // استخراج البيانات من ملف الـ Markdown
+                const img = text.match(/image:\s*["']?([^"'\n]+)["']?/)?.[1];
+                const category = text.match(/category:\s*["']?([^"'\n]+)["']?/)?.[1]?.toLowerCase();
+                const titleAr = text.match(/title_ar:\s*["']?([^"'\n]+)["']?/)?.[1] || "";
+
+                if (img && category) {
+                    allServiceImages.push({ img, category, titleAr });
+                }
+            }
+        }
+        // عرض النجارة كافتراضي عند التحميل
+        filterGallery('carpentry');
+    } catch (err) {
+        console.error("Error fetching images:", err);
+    } finally {
+        loader.style.display = "none";
+    }
+}
+
+function filterGallery(category, btnElement = null) {
+    const container = document.getElementById("servicesGallery");
+    const title = document.getElementById("galleryTitle");
+    
+    // تحديث شكل الأزرار
+    if(btnElement) {
+        document.querySelectorAll('.service-card').forEach(c => c.classList.remove('active'));
+        btnElement.classList.add('active');
+    }
+
+    // تحديث العنوان
+    const catNames = {
+        'carpentry': { en: 'Carpentry', ar: 'النجارة' },
+        'kitchen': { en: 'Kitchen', ar: 'المطابخ' },
+        'cafe': { en: 'Cafe Shops', ar: 'الكافيهات' },
+        'painting': { en: 'Painting', ar: 'الطلاء' },
+        'decor': { en: 'Decor', ar: 'الديكور' }
+    };
+    
+    const selected = catNames[category] || { en: category, ar: category };
+    title.innerHTML = `<span lang="en">${selected.en} <span>Gallery</span></span><span lang="ar">معرض <span>${selected.ar}</span></span>`;
+
+    // تصفية الصور
+    const filtered = allServiceImages.filter(item => item.category === category);
+    
+    container.innerHTML = "";
+    if (filtered.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">No images found in this category.</p>`;
+    } else {
+        filtered.forEach(item => {
+            container.innerHTML += `
+                <div class="gallery-item" data-aos="zoom-in">
+                    <img src="${item.img}" onclick="openLightbox('${item.img}')">
+                </div>`;
+        });
+    }
+    AOS.refresh();
+}
+
+// Lightbox
+function openLightbox(src) {
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightboxImg");
+    lb.style.display = "flex";
+    lbImg.src = src;
+}
+document.getElementById("lightbox").onclick = function() { this.style.display = "none"; };
+
+// تبديل اللغة والوضع الليلي (نفس كودك الأصلي)
+const langBtn = document.getElementById("langToggle");
+langBtn.onclick = () => {
+    const isAr = document.body.classList.toggle("rtl");
+    langBtn.innerText = isAr ? "EN" : "AR";
+    localStorage.setItem("userLang", isAr ? "ar" : "en");
+};
+
+if(localStorage.getItem("userLang") === "ar") {
+    document.body.classList.add("rtl");
+    langBtn.innerText = "EN";
+}
+
+const themeBtn = document.getElementById("themeToggle");
+themeBtn.onclick=()=>{
+    document.body.classList.toggle("light");
+    const isLight = document.body.classList.contains("light");
+    document.querySelector("#themeToggle i").className = isLight ? "fas fa-sun" : "fas fa-moon";
+};
+
+// تشغيل جلب البيانات عند التحميل
+window.onload = loadServiceImages;
+</script>
+</body>
+</html>

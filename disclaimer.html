@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <title>Disclaimer | Ace Woodwork & Decor</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark: #1c1410; --mid: #2b1e16; --light: #8b5e3c; --gold: #c9a24d; --text: #f5f1ed;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: var(--dark); color: var(--text);
+            line-height: 1.8; margin: 0; transition: 0.3s;
+        }
+        body.rtl { direction: rtl; text-align: right; }
+        
+        [lang="ar"] { display: none; }
+        body.rtl [lang="ar"] { display: inline-block; }
+        body.rtl [lang="en"] { display: none; }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(43, 30, 22, 0.95); padding: 20px 6%;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--gold); position: sticky; top: 0; z-index: 1000;
+        }
+        .logo { font-size: 1.3rem; font-weight: bold; color: var(--gold); text-decoration: none; }
+        .back-link { color: #fff; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .back-link:hover { color: var(--gold); }
+
+        /* Content */
+        .container { padding: 60px 10%; max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 { font-size: 3rem; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+        
+        .policy-card {
+            background: var(--mid); padding: 40px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid rgba(201,162,77,0.1);
+        }
+        h2 { color: var(--gold); font-size: 1.4rem; margin-top: 35px; margin-bottom: 15px; border-bottom: 1px solid rgba(201,162,77,0.2); padding-bottom: 8px; text-transform: uppercase; }
+        p { opacity: 0.9; font-size: 1rem; margin-bottom: 15px; }
+
+        /* Floating Button */
+        .lang-switch {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--gold); color: white; border: none;
+            cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000;
+        }
+        body.rtl .lang-switch { right: auto; left: 30px; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .container { padding: 40px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">Ace Woodwork & Decor</a>
+        <a href="index.html" class="back-link">
+            <span lang="en"><i class="fas fa-arrow-left"></i> Home</span>
+            <span lang="ar">الرئيسية <i class="fas fa-arrow-right"></i></span>
+        </a>
+    </nav>
+
+    <div class="container">
+        <header data-aos="zoom-in">
+            <h1><span lang="en">Disclaimer</span><span lang="ar">إخلاء المسؤولية</span></h1>
+            <p><span lang="en">Legal notice regarding the information on this website.</span>
+               <span lang="ar">إشعار قانوني بخصوص المعلومات المقدمة على هذا الموقع.</span></p>
+        </header>
+
+        <div class="policy-card" data-aos="fade-up">
+            
+            <section>
+                <h2><span lang="en">General Disclaimer</span><span lang="ar">إخلاء مسؤولية عام</span></h2>
+                <p lang="en">The information provided on this website is for general informational purposes only. All information on the site is provided in good faith, however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, or completeness of any information on the site.</p>
+                <p lang="ar">المعلومات المقدمة على هذا الموقع هي لأغراض إعلامية عامة فقط. يتم توفير جميع المعلومات بحسن نية، ومع ذلك، فإننا لا نقدم أي تعهد أو ضمان من أي نوع، صريحاً كان أم ضمنياً، فيما يتعلق بدقة أو كفاية أو صحة أو موثوقية أو اكتمال أي معلومات على الموقع.</p>
+                <p lang="en">Your use of the site and your reliance on any information on the site is solely at your own risk.</p>
+                <p lang="ar">استخدامك للموقع واعتمادك على أي معلومات فيه هو على مسؤوليتك الخاصة تماماً.</p>
+            </section>
+
+            <section>
+                <h2><span lang="en">External Links Disclaimer</span><span lang="ar">إخلاء مسؤولية الروابط الخارجية</span></h2>
+                <p lang="en">The site may contain links to other websites or content belonging to third parties. Such external links are not investigated, monitored, or checked for accuracy or reliability by us.</p>
+                <p lang="ar">قد يحتوي الموقع على روابط لمواقع أخرى أو محتوى تابع لأطراف ثالثة. نحن لا نقوم بفحص أو مراقبة أو التحقق من دقة أو موثوقية هذه الروابط الخارجية.</p>
+                <p lang="en">We will not be responsible for monitoring any transaction between you and third-party providers of products or services.</p>
+                <p lang="ar">لن نكون مسؤولين عن مراقبة أي معاملة بينك وبين مقدمي المنتجات أو الخدمات من الأطراف الثالثة.</p>
+            </section>
+
+            <section>
+                <h2><span lang="en">Professional Disclaimer</span><span lang="ar">إخلاء مسؤولية مهني</span></h2>
+                <p lang="en">The site cannot and does not contain legal advice. The information is provided for educational purposes only and is not a substitute for professional advice. Accordingly, before taking any actions, we encourage you to consult with the appropriate professionals.</p>
+                <p lang="ar">لا يمكن للموقع أن يحتوي على نصائح قانونية ولا يقدمها. يتم توفير المعلومات لأغراض تعليمية وإعلامية فقط وليست بديلاً عن الاستشارة المهنية. وبناءً على ذلك، قبل اتخاذ أي إجراءات، نشجعك على استشارة المختصين المناسبين.</p>
+            </section>
+
+            <section>
+                <h2><span lang="en">Affiliates Disclaimer</span><span lang="ar">إخلاء مسؤولية الشركات التابعة</span></h2>
+                <p lang="en">The site may contain links to affiliate websites, and we may receive an affiliate commission for any purchases made by you on the affiliate website using such links.</p>
+                <p lang="ar">قد يحتوي الموقع على روابط لمواقع تابعة، وقد نتلقى عمولة مقابل أي مشتريات تقوم بها على الموقع التابع باستخدام هذه الروابط.</p>
+            </section>
+
+        </div>
+    </div>
+
+    <button class="lang-switch" onclick="toggleLanguage()">AR/EN</button>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000 });
+
+        function toggleLanguage() {
+            const isRtl = document.body.classList.toggle("rtl");
+            localStorage.setItem("lang", isRtl ? "ar" : "en");
+        }
+
+        if (localStorage.getItem("lang") === "ar") {
+            document.body.classList.add("rtl");
+        }
+    </script>
+</body>
+</html>
