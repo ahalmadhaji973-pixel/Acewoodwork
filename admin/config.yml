@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main # تأكد أن هذا هو اسم الفرع الرئيسي لديك
+
+media_folder: "assets/images" # المجلد الذي ستخزن فيه الصور المرفوعة
+public_folder: "/assets/images"
+
+collections:
+  # إدارة صور وبيانات المعرض (Gallery)
+  - name: "gallery"
+    label: "معرض الأعمال (Gallery)"
+    label_singular: "مشروع"
+    folder: "content/gallery" # المجلد الذي يقرأ منه كود gallery.html
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "رابط الصورة", name: "image", widget: "image" }
+      - { label: "العنوان بالإنجليزية", name: "g_title_en", widget: "string" }
+      - { label: "العنوان بالعربية", name: "g_title_ar", widget: "string" }
+
+  # إدارة أقسام الخدمات (Services)
+  - name: "services"
+    label: "الخدمات (Services)"
+    label_singular: "خدمة"
+    folder: "content/services" # المجلد الذي يقرأ منه كود services.html
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "الصورة", name: "image", widget: "image" }
+      - { label: "اسم الخدمة (EN)", name: "title", widget: "string" }
+      - { label: "اسم الخدمة (AR)", name: "title_ar", widget: "string" }
+      - { 
+          label: "القسم", 
+          name: "category", 
+          widget: "select", 
+          options: [
+            { label: "نجارة (Carpentry)", value: "carpentry" },
+            { label: "مطابخ (Kitchen)", value: "kitchen" },
+            { label: "كافيهات (Cafe)", value: "cafe" },
+            { label: "طلاء (Painting)", value: "painting" },
+            { label: "ديكور (Decor)", value: "decor" }
+          ] 
+        }
+      - { label: "وصف الخدمة", name: "body", widget: "markdown", required: false }
