@@ -1,8 +1,7 @@
 ---
-image: https://images.unsplash.com/photo-1578926078328-123c61b91457?w=800
+image: https://raw.githubusercontent.com/ahalmadhaji973-pixel/Acewoodwork/main/assets/images/1775970869796.png
 title: Professional Painting Services
-title_ar: خدمات الطلاء الاحترافية
+title_ar: Ø®Ø¯ÙØ§Øª Ø§ÙØ·ÙØ§Ø¡ Ø§ÙØ§Ø­ØªØ±Ø§ÙÙØ©
 category: painting
 ---
 
-High-quality interior and exterior painting with premium finishes.
