@@ -498,8 +498,16 @@ socialToggle.onclick = () => {
     socialToggle.innerHTML = socialList.classList.contains("hidden") ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-times"></i>'; 
 };
 
-// ── Contact Form Handler ─────────────────────────────────────────
-// Formspree configuration - sends to acewoodwork8@gmail.com
+// ── Contact Form Handler with EmailJS ─────────────────────────────
+// EmailJS Configuration
+emailjs.init({
+    publicKey: "YOUR_PUBLIC_KEY_HERE", // Will be replaced after setup
+    limitRate: {
+        id: 'emailjs_rate_limit',
+        throttle: 1000
+    }
+});
+
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -520,34 +528,50 @@ document.getElementById('contactForm').addEventListener('submit', async function
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span lang="en">Sending...</span><span lang="ar">جاري الإرسال...</span>';
     
     try {
-        // Send to Formspree
-        const response = await fetch('https://formspree.io/f/xyzpqwer', {
-            method: 'POST',
-            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                message: message,
-                _replyto: email,
-                _subject: 'New Message from ' + name
-            })
+        // Send email using EmailJS
+        const response = await emailjs.send('service_acewood', 'template_acewood', {
+            to_email: 'acewoodwork8@gmail.com',
+            from_name: name,
+            from_email: email,
+            message: message,
+            reply_to: email
         });
         
-        if (response.ok) {
+        if (response.status === 200) {
             showFormStatus('Message sent successfully! We will contact you soon.', 'success');
             document.getElementById('contactForm').reset();
         } else {
-            const data = await response.json();
-            throw new Error(data.error || 'Failed to send message');
+            throw new Error('Failed to send message');
         }
     } catch (error) {
-        console.error('Form submission error:', error);
+        console.error('Email sending error:', error);
         showFormStatus('Error sending message. Please try again or contact us directly.', 'error');
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
     }
 });
+
+function showFormStatus(message, type) {
+    const formStatus = document.getElementById('formStatus');
+    formStatus.textContent = message;
+    formStatus.style.display = 'block';
+    
+    if (type === 'success') {
+        formStatus.style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
+        formStatus.style.color = '#4CAF50';
+        formStatus.style.borderLeft = '4px solid #4CAF50';
+    } else {
+        formStatus.style.backgroundColor = 'rgba(244, 67, 54, 0.2)';
+        formStatus.style.color = '#F44336';
+        formStatus.style.borderLeft = '4px solid #F44336';
+    }
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        formStatus.style.display = 'none';
+    }, 5000);
+}
 
 
 function showFormStatus(message, type) {
@@ -658,5 +682,6 @@ tBtn.onclick = () => { toggleTheme(); };
 window.onscroll = () => { if(window.scrollY > 400) up.classList.add("show"); else up.classList.remove("show"); };
 up.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
 </body>
 </html>
