@@ -31,7 +31,7 @@
         body.rtl [lang="en"] { display: none; }
         
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -41,34 +41,36 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 20px 25px;
             background: linear-gradient(145deg, var(--mid), var(--dark));
             border-radius: 12px;
             margin-bottom: 30px;
-            border: 1px solid rgba(201, 162, 77, 0.1);
+            border: 1px solid rgba(201, 162, 77, 0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         
-        .header h1 {
-            font-size: 2rem;
-            color: var(--gold);
-        }
+        .header-brand { display: flex; align-items: center; gap: 12px; }
+        .header-brand .brand-icon { font-size: 2rem; color: var(--gold); }
+        .header h1 { font-size: 1.6rem; color: var(--gold); }
+        .header h1 small { display: block; font-size: 0.75rem; color: rgba(245,241,237,0.5); font-weight: 400; margin-top: 2px; }
         
         .header-controls {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
         }
         
         .btn {
             padding: 10px 20px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.9rem;
         }
         
         .btn-primary {
@@ -86,9 +88,7 @@
             color: #fff;
         }
         
-        .btn-danger:hover {
-            background: #b71c1c;
-        }
+        .btn-danger:hover { background: #b71c1c; }
         
         .btn-secondary {
             background: var(--mid);
@@ -96,53 +96,104 @@
             border: 1px solid var(--gold);
         }
         
-        .btn-secondary:hover {
-            background: var(--light);
+        .btn-secondary:hover { background: var(--light); color: #fff; }
+
+        .btn-success {
+            background: #2e7d32;
+            color: #fff;
         }
+        .btn-success:hover { background: #1b5e20; }
+
+        .btn-warning {
+            background: #e65100;
+            color: #fff;
+        }
+        .btn-warning:hover { background: #bf360c; }
         
         /* Tabs */
         .tabs {
             display: flex;
-            gap: 10px;
+            gap: 5px;
             margin-bottom: 30px;
             border-bottom: 2px solid rgba(201, 162, 77, 0.2);
+            flex-wrap: wrap;
         }
         
         .tab-btn {
-            padding: 12px 24px;
+            padding: 12px 22px;
             background: transparent;
             border: none;
             color: var(--text);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             border-bottom: 3px solid transparent;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 8px 8px 0 0;
         }
+        
+        .tab-btn:hover { background: rgba(201,162,77,0.08); }
         
         .tab-btn.active {
             color: var(--gold);
             border-bottom-color: var(--gold);
+            background: rgba(201,162,77,0.08);
+        }
+
+        .tab-btn .badge {
+            background: var(--gold);
+            color: #1c1410;
+            border-radius: 50px;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
         }
         
-        .tab-content {
-            display: none;
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
         
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Form */
-        .form-group {
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
         }
+        .section-header h2 {
+            font-size: 1.2rem;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Info Banner */
+        .info-banner {
+            background: rgba(201,162,77,0.08);
+            border: 1px solid rgba(201,162,77,0.2);
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 22px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(245,241,237,0.8);
+        }
+        .info-banner i { color: var(--gold); margin-inline-end: 8px; }
+
+        /* Form */
+        .form-group { margin-bottom: 20px; }
         
         .form-group label {
             display: block;
             margin-bottom: 8px;
             color: var(--gold);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .form-group input,
@@ -151,10 +202,12 @@
             width: 100%;
             padding: 12px;
             border: 1px solid rgba(201, 162, 77, 0.2);
-            border-radius: 6px;
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.05);
             color: var(--text);
             font-family: inherit;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
         
         .form-group input:focus,
@@ -170,6 +223,48 @@
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
+
+        /* Toggle Switch */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(201,162,77,0.2);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+        .toggle-group label { margin: 0; flex: 1; }
+        .toggle-group .toggle-desc { font-size: 0.82rem; color: rgba(245,241,237,0.55); font-weight: 400; }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 28px;
+            transition: 0.4s;
+            border: 1px solid rgba(201,162,77,0.3);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px; width: 20px;
+            left: 4px; bottom: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+        input:checked + .slider { background: linear-gradient(135deg, var(--light), var(--gold)); border-color: var(--gold); }
+        input:checked + .slider:before { transform: translateX(24px); }
         
         .image-preview {
             margin-top: 15px;
@@ -178,15 +273,15 @@
         
         .image-preview img {
             max-width: 100%;
-            max-height: 300px;
+            max-height: 280px;
             border-radius: 8px;
-            border: 1px solid rgba(201, 162, 77, 0.2);
+            border: 2px solid rgba(201, 162, 77, 0.3);
         }
         
         .file-input-wrapper {
             position: relative;
             overflow: hidden;
-            display: inline-block;
+            display: block;
         }
         
         .file-input-wrapper input[type="file"] {
@@ -196,31 +291,34 @@
         
         .file-input-label {
             display: block;
-            padding: 12px;
-            background: rgba(201, 162, 77, 0.2);
-            border: 2px dashed var(--gold);
-            border-radius: 6px;
+            padding: 20px 12px;
+            background: rgba(201, 162, 77, 0.07);
+            border: 2px dashed rgba(201,162,77,0.4);
+            border-radius: 10px;
             text-align: center;
             cursor: pointer;
             transition: 0.3s;
+            color: rgba(245,241,237,0.7);
         }
         
         .file-input-label:hover {
-            background: rgba(201, 162, 77, 0.3);
+            background: rgba(201, 162, 77, 0.15);
+            border-color: var(--gold);
         }
+        .file-input-label i { font-size: 2rem; color: var(--gold); display: block; margin-bottom: 8px; }
         
         .file-name {
             margin-top: 8px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gold);
         }
         
         /* Gallery Grid */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         .gallery-card {
@@ -229,58 +327,80 @@
             overflow: hidden;
             border: 1px solid rgba(201, 162, 77, 0.1);
             transition: 0.3s;
+            position: relative;
         }
         
         .gallery-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(201,162,77,0.25);
         }
         
         .gallery-card img {
             width: 100%;
-            height: 200px;
+            height: 190px;
             object-fit: cover;
         }
         
-        .gallery-card-content {
-            padding: 15px;
-        }
+        .gallery-card-content { padding: 14px; }
         
         .gallery-card h3 {
             color: var(--gold);
-            margin-bottom: 8px;
-            font-size: 1rem;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
         }
         
         .gallery-card p {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 4px;
+        }
+
+        .gallery-card .filename {
+            font-size: 0.75rem;
+            opacity: 0.4;
             margin-bottom: 12px;
+            font-family: monospace;
         }
         
         .gallery-card-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
         
         .gallery-card-actions button {
             flex: 1;
-            padding: 8px;
+            padding: 8px 6px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
+            font-size: 0.82rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
         }
         
-        .edit-btn {
-            background: var(--light);
+        .delete-btn { background: #d32f2f; color: #fff; }
+        .delete-btn:hover { background: #b71c1c; }
+
+        /* Home badge on card */
+        .home-badge {
+            position: absolute;
+            top: 10px;
+            inset-inline-start: 10px;
+            background: linear-gradient(135deg, var(--light), var(--gold));
             color: #fff;
-        }
-        
-        .delete-btn {
-            background: #d32f2f;
-            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
         
         /* Modal */
@@ -288,121 +408,96 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
         
-        .modal.active {
-            display: flex;
-        }
+        .modal.active { display: flex; }
         
         .modal-content {
             background: var(--card);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 30px;
-            max-width: 600px;
+            max-width: 620px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 92vh;
             overflow-y: auto;
-            border: 1px solid rgba(201, 162, 77, 0.2);
+            border: 1px solid rgba(201, 162, 77, 0.25);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
         
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(201,162,77,0.15);
         }
         
-        .modal-header h2 {
-            color: var(--gold);
-        }
+        .modal-header h2 { color: var(--gold); font-size: 1.2rem; }
         
         .close-btn {
-            background: none;
-            border: none;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             color: var(--text);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
         }
+        .close-btn:hover { background: rgba(211,47,47,0.3); border-color: #d32f2f; }
         
         /* Alert */
         .alert {
-            padding: 15px;
-            border-radius: 6px;
+            padding: 14px 18px;
+            border-radius: 8px;
             margin-bottom: 20px;
             display: none;
+            font-size: 0.9rem;
         }
         
-        .alert.show {
-            display: block;
-        }
-        
-        .alert-success {
-            background: rgba(76, 175, 80, 0.2);
-            color: #4caf50;
-            border: 1px solid #4caf50;
-        }
-        
-        .alert-error {
-            background: rgba(211, 47, 47, 0.2);
-            color: #d32f2f;
-            border: 1px solid #d32f2f;
-        }
-        
-        .alert-warning {
-            background: rgba(255, 152, 0, 0.2);
-            color: #ff9800;
-            border: 1px solid #ff9800;
-        }
+        .alert.show { display: flex; align-items: center; gap: 10px; }
+        .alert-success { background: rgba(76, 175, 80, 0.15); color: #66bb6a; border: 1px solid rgba(76,175,80,0.4); }
+        .alert-error { background: rgba(211, 47, 47, 0.15); color: #ef5350; border: 1px solid rgba(211,47,47,0.4); }
+        .alert-warning { background: rgba(255, 152, 0, 0.15); color: #ffa726; border: 1px solid rgba(255,152,0,0.4); }
         
         /* Loading */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-        
-        .loading.show {
-            display: block;
-        }
+        .loading { display: none; text-align: center; padding: 60px 40px; }
+        .loading.show { display: block; }
         
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(201, 162, 77, 0.2);
+            width: 44px; height: 44px;
+            border: 3px solid rgba(201, 162, 77, 0.15);
             border-top-color: var(--gold);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            margin: 0 auto 16px;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Empty state */
+        .empty-state {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 60px 20px;
+            opacity: 0.5;
         }
+        .empty-state i { font-size: 3rem; color: var(--gold); margin-bottom: 16px; display: block; }
         
         /* Responsive */
         @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .tabs {
-                flex-wrap: wrap;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
+            .form-row { grid-template-columns: 1fr; }
+            .header { flex-direction: column; gap: 15px; text-align: center; }
+            .tabs { flex-wrap: wrap; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .section-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -411,11 +506,22 @@
 <div class="container">
     <!-- Header -->
     <div class="header">
-        <div>
-            <h1><span lang="en">Admin Dashboard</span><span lang="ar">لوحة التحكم</span></h1>
+        <div class="header-brand">
+            <i class="fas fa-hammer brand-icon"></i>
+            <div>
+                <h1>
+                    <span lang="en">Admin Dashboard<small>Ace Woodwork & Decor</small></span>
+                    <span lang="ar">لوحة التحكم<small>آيس لأعمال الخشب والديكور</small></span>
+                </h1>
+            </div>
         </div>
         <div class="header-controls">
+            <a href="../index.html" target="_blank" class="btn btn-secondary" style="text-decoration:none;">
+                <i class="fas fa-external-link-alt"></i>
+                <span lang="en">View Site</span><span lang="ar">عرض الموقع</span>
+            </a>
             <button class="btn btn-secondary" id="langToggle">
+                <i class="fas fa-language"></i>
                 <span lang="en">العربية</span><span lang="ar">English</span>
             </button>
             <button class="btn btn-danger" onclick="logout()">
@@ -430,22 +536,62 @@
     
     <!-- Tabs -->
     <div class="tabs">
-        <button class="tab-btn active" onclick="switchTab('gallery')">
-            <i class="fas fa-images"></i>
-            <span lang="en">Gallery</span><span lang="ar">المعرض</span>
+        <button class="tab-btn active" onclick="switchTab('home-gallery', this)">
+            <i class="fas fa-home"></i>
+            <span lang="en">Homepage Gallery</span><span lang="ar">معرض الرئيسية</span>
+            <span class="badge" id="homeGalleryCount">0</span>
         </button>
-        <button class="tab-btn" onclick="switchTab('services')">
+        <button class="tab-btn" onclick="switchTab('gallery', this)">
+            <i class="fas fa-images"></i>
+            <span lang="en">All Gallery</span><span lang="ar">كل المعرض</span>
+            <span class="badge" id="allGalleryCount">0</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('services', this)">
             <i class="fas fa-briefcase"></i>
             <span lang="en">Services</span><span lang="ar">الخدمات</span>
+            <span class="badge" id="servicesCount">0</span>
         </button>
     </div>
     
-    <!-- Gallery Tab -->
-    <div id="gallery" class="tab-content active">
-        <button class="btn btn-primary" onclick="openAddModal('gallery')">
-            <i class="fas fa-plus"></i>
-            <span lang="en">Add New Project</span><span lang="ar">إضافة مشروع جديد</span>
-        </button>
+    <!-- Homepage Gallery Tab -->
+    <div id="home-gallery" class="tab-content active">
+        <div class="section-header">
+            <h2><i class="fas fa-home"></i> <span lang="en">Homepage Gallery</span><span lang="ar">معرض الصفحة الرئيسية</span></h2>
+            <button class="btn btn-primary" onclick="openAddModal('gallery', true)">
+                <i class="fas fa-plus"></i>
+                <span lang="en">Add to Homepage</span><span lang="ar">إضافة للرئيسية</span>
+            </button>
+        </div>
+
+        <div class="info-banner">
+            <i class="fas fa-info-circle"></i>
+            <span lang="en">Images added here will appear in the <strong>Gallery section on the Homepage</strong>. You can also promote any gallery image to the homepage from the "All Gallery" tab.</span>
+            <span lang="ar">الصور المضافة هنا ستظهر في <strong>قسم المعرض في الصفحة الرئيسية</strong>. يمكنك أيضاً ترقية أي صورة من تبويب "كل المعرض".</span>
+        </div>
+        
+        <div id="homeGalleryLoading" class="loading">
+            <div class="spinner"></div>
+            <p><span lang="en">Loading...</span><span lang="ar">جاري التحميل...</span></p>
+        </div>
+        
+        <div id="homeGalleryGrid" class="gallery-grid"></div>
+    </div>
+
+    <!-- All Gallery Tab -->
+    <div id="gallery" class="tab-content">
+        <div class="section-header">
+            <h2><i class="fas fa-images"></i> <span lang="en">All Gallery Projects</span><span lang="ar">جميع مشاريع المعرض</span></h2>
+            <button class="btn btn-primary" onclick="openAddModal('gallery', false)">
+                <i class="fas fa-plus"></i>
+                <span lang="en">Add New Project</span><span lang="ar">إضافة مشروع جديد</span>
+            </button>
+        </div>
+
+        <div class="info-banner">
+            <i class="fas fa-info-circle"></i>
+            <span lang="en">All gallery images appear on the <strong>Gallery page</strong>. Use the <i class="fas fa-home" style="color:var(--gold)"></i> button on any card to also show it on the homepage.</span>
+            <span lang="ar">جميع صور المعرض تظهر في <strong>صفحة المعرض</strong>. استخدم زر <i class="fas fa-home" style="color:var(--gold)"></i> على أي بطاقة لإظهارها أيضاً في الصفحة الرئيسية.</span>
+        </div>
         
         <div id="galleryLoading" class="loading">
             <div class="spinner"></div>
@@ -457,10 +603,13 @@
     
     <!-- Services Tab -->
     <div id="services" class="tab-content">
-        <button class="btn btn-primary" onclick="openAddModal('services')">
-            <i class="fas fa-plus"></i>
-            <span lang="en">Add New Service</span><span lang="ar">إضافة خدمة جديدة</span>
-        </button>
+        <div class="section-header">
+            <h2><i class="fas fa-briefcase"></i> <span lang="en">Services</span><span lang="ar">الخدمات</span></h2>
+            <button class="btn btn-primary" onclick="openAddModal('services', false)">
+                <i class="fas fa-plus"></i>
+                <span lang="en">Add New Service</span><span lang="ar">إضافة خدمة جديدة</span>
+            </button>
+        </div>
         
         <div id="servicesLoading" class="loading">
             <div class="spinner"></div>
@@ -475,18 +624,22 @@
 <div id="itemModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h2 id="modalTitle"><span lang="en">Add New Item</span><span lang="ar">إضافة عنصر جديد</span></h2>
+            <h2 id="modalTitle">
+                <i class="fas fa-plus-circle" style="margin-inline-end:8px"></i>
+                <span lang="en">Add New Item</span><span lang="ar">إضافة عنصر جديد</span>
+            </h2>
             <button class="close-btn" onclick="closeModal()">&times;</button>
         </div>
         
         <form id="itemForm">
             <div class="form-group">
-                <label><span lang="en">Upload Image</span><span lang="ar">رفع صورة</span></label>
+                <label><i class="fas fa-image" style="margin-inline-end:6px"></i><span lang="en">Upload Image</span><span lang="ar">رفع صورة</span></label>
                 <div class="file-input-wrapper">
                     <input type="file" id="imageFile" accept="image/*" onchange="handleImageUpload(event)">
                     <label for="imageFile" class="file-input-label">
-                        <i class="fas fa-cloud-upload-alt"></i><br>
+                        <i class="fas fa-cloud-upload-alt"></i>
                         <span lang="en">Click to upload or drag & drop</span><span lang="ar">اضغط للرفع أو اسحب الملف</span>
+                        <small style="display:block;margin-top:6px;font-size:0.8rem;opacity:0.6;">PNG, JPG, WEBP</small>
                     </label>
                 </div>
                 <div class="file-name" id="fileName"></div>
@@ -500,35 +653,52 @@
             <div class="form-row">
                 <div class="form-group">
                     <label><span lang="en">Title (English)</span><span lang="ar">العنوان (إنجليزي)</span></label>
-                    <input type="text" id="titleEn" required>
+                    <input type="text" id="titleEn" placeholder="e.g. Modern Kitchen" required>
                 </div>
                 <div class="form-group">
                     <label><span lang="en">Title (Arabic)</span><span lang="ar">العنوان (عربي)</span></label>
-                    <input type="text" id="titleAr" required>
+                    <input type="text" id="titleAr" placeholder="مثال: مطبخ عصري" required>
                 </div>
             </div>
             
             <div id="categoryGroup" class="form-group" style="display: none;">
                 <label><span lang="en">Category</span><span lang="ar">الفئة</span></label>
                 <select id="category">
-                    <option value="carpentry"><span lang="en">Carpentry</span><span lang="ar">النجارة</span></option>
-                    <option value="kitchen"><span lang="en">Kitchen</span><span lang="ar">المطابخ</span></option>
-                    <option value="cafe"><span lang="en">Cafe Shops</span><span lang="ar">الكافيهات</span></option>
-                    <option value="painting"><span lang="en">Painting</span><span lang="ar">الطلاء</span></option>
-                    <option value="decor"><span lang="en">Decor</span><span lang="ar">الديكور</span></option>
+                    <option value="carpentry">Carpentry / النجارة</option>
+                    <option value="kitchen">Kitchen / المطابخ</option>
+                    <option value="cafe">Cafe Shops / الكافيهات</option>
+                    <option value="painting">Painting / الطلاء</option>
+                    <option value="decor">Decor / الديكور</option>
                 </select>
             </div>
             
+            <!-- Show on Homepage Toggle (gallery only) -->
+            <div id="homeToggleGroup" class="form-group">
+                <div class="toggle-group">
+                    <label for="showOnHome">
+                        <i class="fas fa-home" style="color:var(--gold);margin-inline-end:6px"></i>
+                        <span lang="en">Show on Homepage Gallery</span><span lang="ar">إظهار في معرض الصفحة الرئيسية</span>
+                        <span class="toggle-desc"><br><span lang="en">This image will appear in the gallery section on the main page</span><span lang="ar">ستظهر هذه الصورة في قسم المعرض بالصفحة الرئيسية</span></span>
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" id="showOnHome">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label><span lang="en">Description</span><span lang="ar">الوصف</span></label>
-                <textarea id="description" rows="4"></textarea>
+                <textarea id="description" rows="3" placeholder="Optional description..."></textarea>
             </div>
             
-            <div style="display: flex; gap: 10px;">
-                <button type="submit" class="btn btn-primary" style="flex: 1;">
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;" id="submitBtn">
+                    <i class="fas fa-save"></i>
                     <span lang="en">Save</span><span lang="ar">حفظ</span>
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="closeModal()" style="flex: 1;">
+                    <i class="fas fa-times"></i>
                     <span lang="en">Cancel</span><span lang="ar">إلغاء</span>
                 </button>
             </div>
@@ -537,48 +707,51 @@
 </div>
 
 <script>
-    // Configuration
+    // ── Configuration ──────────────────────────────────────────────
     const GITHUB_USER = 'ahalmadhaji973-pixel';
     const REPO_NAME = 'Acewoodwork';
     const GITHUB_TOKEN = localStorage.getItem('github_token');
     
-    let currentTab = 'gallery';
+    let currentTab = 'home-gallery';
     let currentEditingFile = null;
     let uploadedImageBase64 = null;
+    let addingForHome = false;
+
+    // Cache for gallery files to avoid repeated API calls
+    let galleryCache = null;
     
-    // Initialize
+    // ── Initialize ─────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
         checkAdminSession();
         checkAuth();
-        loadContent('gallery');
+
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang === 'ar') document.body.classList.add('rtl');
+
+        loadHomeGallery();
         
-        // Language toggle
         document.getElementById('langToggle').addEventListener('click', toggleLanguage);
-        
-        // Form submit
         document.getElementById('itemForm').addEventListener('submit', handleFormSubmit);
         
         // Drag and drop
         const fileInput = document.getElementById('imageFile');
         const fileLabel = document.querySelector('.file-input-label');
         
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            fileLabel.addEventListener(eventName, preventDefaults, false);
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(e => {
+            fileLabel.addEventListener(e, ev => { ev.preventDefault(); ev.stopPropagation(); });
         });
         
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        
+        fileLabel.addEventListener('dragover', () => fileLabel.style.borderColor = 'var(--gold)');
+        fileLabel.addEventListener('dragleave', () => fileLabel.style.borderColor = '');
         fileLabel.addEventListener('drop', (e) => {
+            fileLabel.style.borderColor = '';
             const dt = e.dataTransfer;
-            const files = dt.files;
-            fileInput.files = files;
+            fileInput.files = dt.files;
             handleImageUpload({ target: fileInput });
         });
     });
     
+    // ── Auth ───────────────────────────────────────────────────────
     function checkAdminSession() {
         const sessionToken = localStorage.getItem('admin_session');
         const sessionTime = localStorage.getItem('admin_session_time');
@@ -594,7 +767,6 @@
             localStorage.removeItem('admin_session');
             localStorage.removeItem('admin_session_time');
             window.location.href = 'login.html';
-            return;
         }
     }
     
@@ -616,93 +788,195 @@
         localStorage.setItem('lang', document.body.classList.contains('rtl') ? 'ar' : 'en');
     }
     
-    function switchTab(tab) {
+    // ── Tabs ───────────────────────────────────────────────────────
+    function switchTab(tab, btn) {
         currentTab = tab;
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         document.getElementById(tab).classList.add('active');
-        event.target.closest('.tab-btn').classList.add('active');
-        loadContent(tab);
+        if (btn) btn.classList.add('active');
+        else event.target.closest('.tab-btn').classList.add('active');
+
+        if (tab === 'home-gallery') loadHomeGallery();
+        else if (tab === 'gallery') loadAllGallery();
+        else if (tab === 'services') loadContent('services');
     }
     
-    async function loadContent(type) {
-        const gridId = type === 'gallery' ? 'galleryGrid' : 'servicesGrid';
-        const loadingId = type === 'gallery' ? 'galleryLoading' : 'servicesLoading';
-        const grid = document.getElementById(gridId);
-        const loading = document.getElementById(loadingId);
-        
+    // ── Fetch all gallery files (cached) ───────────────────────────
+    async function fetchGalleryFiles(forceRefresh = false) {
+        if (galleryCache && !forceRefresh) return galleryCache;
+
+        const response = await fetch(
+            `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/gallery`,
+            { headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+raw' } }
+        );
+        if (!response.ok) throw new Error('Failed to load gallery');
+        const files = await response.json();
+        const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+        const items = [];
+        for (const file of mdFiles) {
+            const contentResponse = await fetch(file.download_url);
+            const content = await contentResponse.text();
+            const data = parseMarkdown(content);
+            items.push({ filename: file.name, data, sha: file.sha });
+        }
+
+        galleryCache = items;
+        return items;
+    }
+
+    // ── Load Homepage Gallery ──────────────────────────────────────
+    async function loadHomeGallery(forceRefresh = false) {
+        const grid = document.getElementById('homeGalleryGrid');
+        const loading = document.getElementById('homeGalleryLoading');
         loading.classList.add('show');
         grid.innerHTML = '';
-        
+
         try {
-            const path = type === 'gallery' ? 'content/gallery' : 'content/services';
-            const response = await fetch(
-                `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${path}`,
-                {
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Accept': 'application/vnd.github.v3+raw'
-                    }
-                }
-            );
-            
-            if (!response.ok) throw new Error('Failed to load content');
-            
-            const files = await response.json();
-            const mdFiles = files.filter(f => f.name.endsWith('.md'));
-            
-            for (const file of mdFiles) {
-                const contentResponse = await fetch(file.download_url);
-                const content = await contentResponse.text();
-                const data = parseMarkdown(content);
-                
-                const card = createCard(data, file.name, type);
-                grid.appendChild(card);
-            }
-            
-            if (mdFiles.length === 0) {
-                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; opacity: 0.5;">
-                    <span lang="en">No items yet. Add your first one!</span>
-                    <span lang="ar">لا توجد عناصر حتى الآن. أضف أول عنصر!</span>
-                </p>`;
+            const items = await fetchGalleryFiles(forceRefresh);
+            const homeItems = items.filter(item => item.data.show_on_home === 'true');
+
+            document.getElementById('homeGalleryCount').textContent = homeItems.length;
+            document.getElementById('allGalleryCount').textContent = items.length;
+
+            if (homeItems.length === 0) {
+                grid.innerHTML = `<div class="empty-state">
+                    <i class="fas fa-home"></i>
+                    <p><span lang="en">No homepage gallery images yet.<br>Add images or promote them from the "All Gallery" tab.</span>
+                    <span lang="ar">لا توجد صور في معرض الرئيسية بعد.<br>أضف صوراً أو قم بترقيتها من تبويب "كل المعرض".</span></p>
+                </div>`;
+            } else {
+                homeItems.forEach(item => {
+                    const card = createGalleryCard(item.data, item.filename, true);
+                    grid.appendChild(card);
+                });
             }
         } catch (error) {
-            showAlert('Error loading content: ' + error.message, 'error');
+            showAlert('Error loading homepage gallery: ' + error.message, 'error');
+        } finally {
+            loading.classList.remove('show');
+        }
+    }
+
+    // ── Load All Gallery ───────────────────────────────────────────
+    async function loadAllGallery(forceRefresh = false) {
+        const grid = document.getElementById('galleryGrid');
+        const loading = document.getElementById('galleryLoading');
+        loading.classList.add('show');
+        grid.innerHTML = '';
+
+        try {
+            const items = await fetchGalleryFiles(forceRefresh);
+            document.getElementById('allGalleryCount').textContent = items.length;
+
+            if (items.length === 0) {
+                grid.innerHTML = `<div class="empty-state">
+                    <i class="fas fa-images"></i>
+                    <p><span lang="en">No gallery items yet. Add your first one!</span>
+                    <span lang="ar">لا توجد عناصر حتى الآن. أضف أول عنصر!</span></p>
+                </div>`;
+            } else {
+                items.forEach(item => {
+                    const card = createGalleryCard(item.data, item.filename, false);
+                    grid.appendChild(card);
+                });
+            }
+        } catch (error) {
+            showAlert('Error loading gallery: ' + error.message, 'error');
+        } finally {
+            loading.classList.remove('show');
+        }
+    }
+
+    // ── Load Services ──────────────────────────────────────────────
+    async function loadContent(type) {
+        const grid = document.getElementById('servicesGrid');
+        const loading = document.getElementById('servicesLoading');
+        loading.classList.add('show');
+        grid.innerHTML = '';
+
+        try {
+            const response = await fetch(
+                `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/services`,
+                { headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+raw' } }
+            );
+            if (!response.ok) throw new Error('Failed to load services');
+            const files = await response.json();
+            const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+            document.getElementById('servicesCount').textContent = mdFiles.length;
+
+            if (mdFiles.length === 0) {
+                grid.innerHTML = `<div class="empty-state">
+                    <i class="fas fa-briefcase"></i>
+                    <p><span lang="en">No services yet. Add your first one!</span>
+                    <span lang="ar">لا توجد خدمات حتى الآن. أضف أول خدمة!</span></p>
+                </div>`;
+            } else {
+                for (const file of mdFiles) {
+                    const contentResponse = await fetch(file.download_url);
+                    const content = await contentResponse.text();
+                    const data = parseMarkdown(content);
+                    const card = createServiceCard(data, file.name);
+                    grid.appendChild(card);
+                }
+            }
+        } catch (error) {
+            showAlert('Error loading services: ' + error.message, 'error');
         } finally {
             loading.classList.remove('show');
         }
     }
     
+    // ── Parse Markdown frontmatter ─────────────────────────────────
     function parseMarkdown(content) {
-        const frontmatter = content.split('---')[1];
+        const parts = content.split('---');
+        if (parts.length < 3) return {};
+        const frontmatter = parts[1];
         const data = {};
-        
         frontmatter.split('\n').forEach(line => {
-            const [key, ...value] = line.split(':');
-            if (key && value.length) {
-                data[key.trim()] = value.join(':').trim().replace(/["']/g, '');
+            const colonIdx = line.indexOf(':');
+            if (colonIdx > 0) {
+                const key = line.substring(0, colonIdx).trim();
+                const value = line.substring(colonIdx + 1).trim().replace(/^["']|["']$/g, '');
+                if (key) data[key] = value;
             }
         });
-        
         return data;
     }
     
-    function createCard(data, filename, type) {
+    // ── Create Gallery Card ────────────────────────────────────────
+    function createGalleryCard(data, filename, isHomeView) {
         const card = document.createElement('div');
         card.className = 'gallery-card';
         
-        const title = type === 'gallery' ? (data.g_title_en || data.title || 'Untitled') : (data.title || 'Untitled');
-        const titleAr = type === 'gallery' ? (data.g_title_ar || '') : (data.title_ar || '');
+        const titleEn = data.g_title_en || data.title || 'Untitled';
+        const titleAr = data.g_title_ar || '';
+        const isOnHome = data.show_on_home === 'true';
         
+        const homeBadge = isOnHome ? `<div class="home-badge"><i class="fas fa-home"></i> <span lang="en">Homepage</span><span lang="ar">الرئيسية</span></div>` : '';
+        
+        const homeToggleBtn = isOnHome
+            ? `<button class="btn btn-warning" style="flex:1;padding:8px 6px;font-size:0.8rem;" onclick="toggleHomeStatus('${filename}', false)">
+                <i class="fas fa-home"></i> <span lang="en">Remove from Home</span><span lang="ar">إزالة من الرئيسية</span>
+               </button>`
+            : `<button class="btn btn-success" style="flex:1;padding:8px 6px;font-size:0.8rem;" onclick="toggleHomeStatus('${filename}', true)">
+                <i class="fas fa-home"></i> <span lang="en">Add to Home</span><span lang="ar">إضافة للرئيسية</span>
+               </button>`;
+
         card.innerHTML = `
-            <img src="${data.image || 'https://via.placeholder.com/250x200'}" alt="${title}" onerror="this.src='https://via.placeholder.com/250x200'">
+            ${homeBadge}
+            <img src="${data.image || 'https://via.placeholder.com/260x190?text=No+Image'}" alt="${titleEn}" 
+                 onerror="this.src='https://via.placeholder.com/260x190?text=No+Image'">
             <div class="gallery-card-content">
-                <h3>${title}</h3>
+                <h3>${titleEn}</h3>
                 <p>${titleAr}</p>
-                <p style="font-size: 0.8rem; opacity: 0.6;">${filename}</p>
+                <p class="filename">${filename}</p>
                 <div class="gallery-card-actions">
-                    <button class="delete-btn" onclick="deleteItem('${filename}', '${type}')">
-                        <i class="fas fa-trash"></i> Delete
+                    ${!isHomeView ? homeToggleBtn : ''}
+                    <button class="delete-btn" onclick="deleteItem('${filename}', 'gallery')">
+                        <i class="fas fa-trash"></i> <span lang="en">Delete</span><span lang="ar">حذف</span>
                     </button>
                 </div>
             </div>
@@ -710,13 +984,99 @@
         
         return card;
     }
+
+    // ── Create Service Card ────────────────────────────────────────
+    function createServiceCard(data, filename) {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+        const title = data.title || 'Untitled';
+        const titleAr = data.title_ar || '';
+        card.innerHTML = `
+            <img src="${data.image || 'https://via.placeholder.com/260x190?text=No+Image'}" alt="${title}"
+                 onerror="this.src='https://via.placeholder.com/260x190?text=No+Image'">
+            <div class="gallery-card-content">
+                <h3>${title}</h3>
+                <p>${titleAr}</p>
+                <p class="filename">${filename}</p>
+                <div class="gallery-card-actions">
+                    <button class="delete-btn" onclick="deleteItem('${filename}', 'services')">
+                        <i class="fas fa-trash"></i> <span lang="en">Delete</span><span lang="ar">حذف</span>
+                    </button>
+                </div>
+            </div>
+        `;
+        return card;
+    }
     
-    function openAddModal(type) {
+    // ── Toggle Homepage Status ─────────────────────────────────────
+    async function toggleHomeStatus(filename, setToHome) {
+        try {
+            showAlert(setToHome ? 'Adding to homepage...' : 'Removing from homepage...', 'warning');
+
+            // Get current file content and SHA
+            const getResponse = await fetch(
+                `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/gallery/${filename}`,
+                { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } }
+            );
+            const fileData = await getResponse.json();
+            const currentContent = atob(fileData.content.replace(/\n/g, ''));
+
+            // Update show_on_home field
+            let newContent;
+            if (currentContent.includes('show_on_home:')) {
+                newContent = currentContent.replace(/show_on_home:\s*(true|false)/g, `show_on_home: ${setToHome}`);
+            } else {
+                // Insert after first ---\n
+                const firstClose = currentContent.indexOf('\n---');
+                if (firstClose !== -1) {
+                    newContent = currentContent.substring(0, firstClose) + `\nshow_on_home: ${setToHome}` + currentContent.substring(firstClose);
+                } else {
+                    newContent = currentContent.replace('---', `---\nshow_on_home: ${setToHome}`);
+                }
+            }
+
+            const updateResponse = await fetch(
+                `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/gallery/${filename}`,
+                {
+                    method: 'PUT',
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: `${setToHome ? 'Add' : 'Remove'} homepage gallery: ${filename}`,
+                        content: btoa(unescape(encodeURIComponent(newContent))),
+                        sha: fileData.sha
+                    })
+                }
+            );
+
+            if (!updateResponse.ok) {
+                const err = await updateResponse.json();
+                throw new Error(err.message || 'Update failed');
+            }
+
+            galleryCache = null; // Invalidate cache
+            showAlert(setToHome ? 'Added to homepage gallery!' : 'Removed from homepage gallery!', 'success');
+
+            // Refresh current view
+            if (currentTab === 'home-gallery') loadHomeGallery(true);
+            else loadAllGallery(true);
+
+        } catch (error) {
+            showAlert('Error updating: ' + error.message, 'error');
+        }
+    }
+
+    // ── Open Modal ─────────────────────────────────────────────────
+    function openAddModal(type, forHome) {
         currentTab = type;
+        addingForHome = forHome;
         currentEditingFile = null;
         uploadedImageBase64 = null;
+
         document.getElementById('categoryGroup').style.display = type === 'services' ? 'block' : 'none';
+        document.getElementById('homeToggleGroup').style.display = type === 'gallery' ? 'block' : 'none';
+        document.getElementById('showOnHome').checked = forHome;
         document.getElementById('itemForm').reset();
+        document.getElementById('showOnHome').checked = forHome; // reset clears it
         document.getElementById('previewImg').style.display = 'none';
         document.getElementById('fileName').textContent = '';
         document.getElementById('itemModal').classList.add('active');
@@ -728,6 +1088,7 @@
         uploadedImageBase64 = null;
     }
     
+    // ── Image Upload ───────────────────────────────────────────────
     function handleImageUpload(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -738,11 +1099,12 @@
             const preview = document.getElementById('previewImg');
             preview.src = uploadedImageBase64;
             preview.style.display = 'block';
-            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileName').textContent = '✓ ' + file.name;
         };
         reader.readAsDataURL(file);
     }
     
+    // ── Form Submit ────────────────────────────────────────────────
     async function handleFormSubmit(e) {
         e.preventDefault();
         
@@ -751,28 +1113,29 @@
             return;
         }
         
-        const titleEn = document.getElementById('titleEn').value;
-        const titleAr = document.getElementById('titleAr').value;
+        const titleEn = document.getElementById('titleEn').value.trim();
+        const titleAr = document.getElementById('titleAr').value.trim();
         const category = document.getElementById('category').value;
-        const description = document.getElementById('description').value;
+        const description = document.getElementById('description').value.trim();
+        const showOnHome = document.getElementById('showOnHome').checked;
         
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span lang="en">Saving...</span><span lang="ar">جاري الحفظ...</span>';
+
         try {
             showAlert('Uploading image...', 'warning');
             
             // Upload image to assets/images
             const imageFileName = `${Date.now()}.png`;
             const imagePath = `assets/images/${imageFileName}`;
-            
             const imageBase64 = uploadedImageBase64.split(',')[1];
             
             const imageUploadResponse = await fetch(
                 `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${imagePath}`,
                 {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         message: `Upload image: ${imageFileName}`,
                         content: imageBase64
@@ -787,22 +1150,24 @@
             
             const imageUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${REPO_NAME}/main/${imagePath}`;
             
-            // Create markdown file
-            const frontmatter = currentTab === 'gallery'
-                ? `---\nimage: ${imageUrl}\ng_title_en: ${titleEn}\ng_title_ar: ${titleAr}\n---\n\n${description}`
-                : `---\nimage: ${imageUrl}\ntitle: ${titleEn}\ntitle_ar: ${titleAr}\ncategory: ${category}\n---\n\n${description}`;
+            // Build frontmatter
+            let frontmatter;
+            if (currentTab === 'gallery') {
+                frontmatter = `---\nimage: ${imageUrl}\ng_title_en: ${titleEn}\ng_title_ar: ${titleAr}\nshow_on_home: ${showOnHome}\n---\n\n${description}`;
+            } else {
+                frontmatter = `---\nimage: ${imageUrl}\ntitle: ${titleEn}\ntitle_ar: ${titleAr}\ncategory: ${category}\n---\n\n${description}`;
+            }
             
             const filename = `${Date.now()}.md`;
             const path = currentTab === 'gallery' ? 'content/gallery' : 'content/services';
             
+            showAlert('Saving content...', 'warning');
+
             const response = await fetch(
                 `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${path}/${filename}`,
                 {
                     method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         message: `Add new ${currentTab} item: ${titleEn}`,
                         content: btoa(unescape(encodeURIComponent(frontmatter)))
@@ -815,41 +1180,48 @@
                 throw new Error('Failed to save item: ' + (errorData.message || response.statusText));
             }
             
+            galleryCache = null; // Invalidate cache
             showAlert(`${currentTab === 'gallery' ? 'Project' : 'Service'} added successfully!`, 'success');
             closeModal();
-            loadContent(currentTab);
+
+            // Refresh appropriate tab
+            if (currentTab === 'gallery') {
+                if (showOnHome) loadHomeGallery(true);
+                else loadAllGallery(true);
+            } else {
+                loadContent('services');
+            }
+
         } catch (error) {
             showAlert('Error saving item: ' + error.message, 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> <span lang="en">Save</span><span lang="ar">حفظ</span>';
         }
     }
     
+    // ── Delete Item ────────────────────────────────────────────────
     async function deleteItem(filename, type) {
-        if (!confirm('Are you sure you want to delete this item?')) return;
+        const confirmMsg = document.body.classList.contains('rtl')
+            ? 'هل أنت متأكد من حذف هذا العنصر؟'
+            : 'Are you sure you want to delete this item?';
+        if (!confirm(confirmMsg)) return;
         
         try {
             const path = type === 'gallery' ? 'content/gallery' : 'content/services';
             
-            // First, get the file to get its SHA
             const getResponse = await fetch(
                 `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${path}/${filename}`,
-                {
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`
-                    }
-                }
+                { headers: { 'Authorization': `token ${GITHUB_TOKEN}` } }
             );
             
             const fileData = await getResponse.json();
             
-            // Then delete it
             const deleteResponse = await fetch(
                 `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/${path}/${filename}`,
                 {
                     method: 'DELETE',
-                    headers: {
-                        'Authorization': `token ${GITHUB_TOKEN}`,
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         message: `Delete ${type} item: ${filename}`,
                         sha: fileData.sha
@@ -859,20 +1231,33 @@
             
             if (!deleteResponse.ok) throw new Error('Failed to delete item');
             
+            galleryCache = null; // Invalidate cache
             showAlert('Item deleted successfully!', 'success');
-            loadContent(type);
+
+            if (type === 'gallery') {
+                if (currentTab === 'home-gallery') loadHomeGallery(true);
+                else loadAllGallery(true);
+            } else {
+                loadContent('services');
+            }
+
         } catch (error) {
             showAlert('Error deleting item: ' + error.message, 'error');
         }
     }
     
+    // ── Show Alert ─────────────────────────────────────────────────
     function showAlert(message, type) {
         const alertBox = document.getElementById('alertBox');
-        alertBox.textContent = message;
+        const icons = { success: 'fas fa-check-circle', error: 'fas fa-exclamation-circle', warning: 'fas fa-spinner fa-spin' };
+        alertBox.innerHTML = `<i class="${icons[type] || 'fas fa-info-circle'}"></i> ${message}`;
         alertBox.className = `alert alert-${type} show`;
-        setTimeout(() => alertBox.classList.remove('show'), 5000);
+        if (type !== 'warning') {
+            setTimeout(() => alertBox.classList.remove('show'), 5000);
+        }
     }
     
+    // ── Logout ─────────────────────────────────────────────────────
     function logout() {
         localStorage.removeItem('github_token');
         localStorage.removeItem('admin_session');

@@ -58,6 +58,32 @@ body.rtl [lang="en"] { display: none; }
 
 /* ================= GALLERY CSS ================= */
 .gallery-section { padding: 80px 10%; background: var(--bg); }
+
+.btn-view-all {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--light), var(--gold));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(201,162,77,0.3);
+}
+.btn-view-all:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(201,162,77,0.5);
+}
+
+.gallery-loading-placeholder {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    opacity: 0.5;
+    font-size: 0.95rem;
+}
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -257,19 +283,18 @@ body.rtl .controls { right: auto; left: 25px; }
         <span lang="en">OUR <span>GALLERY</span></span>
         <span lang="ar">معرض <span>الأعمال</span></span>
     </h2>
-    <div class="gallery-grid">
+    <div class="gallery-grid" id="homepageGalleryGrid">
+        <!-- Loaded dynamically from content/gallery (show_on_home: true) -->
         <div class="gallery-item tall" data-aos="zoom-in">
             <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace" alt="Gallery 1">
             <div class="gallery-overlay">
                 <h4 lang="en">Modern Kitchen</h4><h4 lang="ar">مطبخ عصري</h4>
-                <p>Detroit, MI</p>
             </div>
         </div>
         <div class="gallery-item wide" data-aos="zoom-in" data-aos-delay="100">
             <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88" alt="Gallery 2">
             <div class="gallery-overlay">
                 <h4 lang="en">Office Woodwork</h4><h4 lang="ar">أعمال مكتبية</h4>
-                <p>Ann Arbor</p>
             </div>
         </div>
         <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
@@ -284,6 +309,12 @@ body.rtl .controls { right: auto; left: 25px; }
                 <h4 lang="en">Luxury Bedside</h4><h4 lang="ar">ديكور غرف نوم</h4>
             </div>
         </div>
+    </div>
+    <div style="text-align:center; margin-top: 30px;" data-aos="fade-up">
+        <a href="gallery.html" class="btn-view-all">
+            <span lang="en">View Full Gallery</span><span lang="ar">عرض المعرض الكامل</span>
+            <i class="fas fa-arrow-right" style="margin-inline-start:8px"></i>
+        </a>
     </div>
 </section>
 
@@ -468,6 +499,79 @@ socialToggle.onclick = () => {
 };
 
 // Language Toggle is now handled by theme-lang.js
+
+// Load Homepage Gallery Dynamically
+(async function loadHomepageGallery() {
+    const GITHUB_USER = 'ahalmadhaji973-pixel';
+    const REPO_NAME = 'Acewoodwork';
+    const grid = document.getElementById('homepageGalleryGrid');
+    if (!grid) return;
+
+    function parseMarkdown(content) {
+        const parts = content.split('---');
+        if (parts.length < 3) return {};
+        const data = {};
+        parts[1].split('\n').forEach(line => {
+            const colonIdx = line.indexOf(':');
+            if (colonIdx > 0) {
+                const key = line.substring(0, colonIdx).trim();
+                const value = line.substring(colonIdx + 1).trim().replace(/^"|"$/g, '');
+                if (key) data[key] = value;
+            }
+        });
+        return data;
+    }
+
+    try {
+        const response = await fetch(
+            `https://api.github.com/repos/${GITHUB_USER}/${REPO_NAME}/contents/content/gallery`,
+            { headers: { 'Accept': 'application/vnd.github.v3+json' } }
+        );
+        if (!response.ok) return; // Silently fail, keep static fallback
+
+        const files = await response.json();
+        const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+        const homeItems = [];
+        for (const file of mdFiles) {
+            const contentResponse = await fetch(file.download_url);
+            const content = await contentResponse.text();
+            const data = parseMarkdown(content);
+            if (data.show_on_home === 'true') {
+                homeItems.push(data);
+            }
+        }
+
+        if (homeItems.length > 0) {
+            grid.innerHTML = '';
+            const sizeClasses = ['tall', 'wide', '', ''];
+            homeItems.forEach((item, i) => {
+                const sizeClass = sizeClasses[i % sizeClasses.length];
+                const delay = i * 100;
+                const titleEn = item.g_title_en || item.title || '';
+                const titleAr = item.g_title_ar || '';
+                const div = document.createElement('div');
+                div.className = `gallery-item ${sizeClass}`;
+                div.setAttribute('data-aos', 'zoom-in');
+                if (delay) div.setAttribute('data-aos-delay', delay);
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${titleEn}" loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1616486338812-3dadae4b4ace'">
+                    <div class="gallery-overlay">
+                        <h4 lang="en">${titleEn}</h4>
+                        <h4 lang="ar">${titleAr}</h4>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+            // Re-init AOS for new elements
+            if (typeof AOS !== 'undefined') AOS.refresh();
+        }
+        // If no home items found, keep the static fallback images
+    } catch (e) {
+        // Silently fail, static fallback remains
+    }
+})();
 
 // Hero Slider
 let sIdx = 0; const slides = document.querySelectorAll(".hero-slide");
