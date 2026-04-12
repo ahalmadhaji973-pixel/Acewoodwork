@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ace Woodwork - Admin Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --dark: #1c1410;
+            --mid: #2b1e16;
+            --light: #8b5e3c;
+            --gold: #c9a24d;
+            --bg: #1c1410;
+            --card: #2a1d16;
+            --text: #f5f1ed;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, var(--dark), var(--mid));
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        body.rtl { direction: rtl; text-align: right; }
+        [lang="ar"] { display: none; }
+        body.rtl [lang="ar"] { display: inline-block; }
+        body.rtl [lang="en"] { display: none; }
+        
+        .login-container {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid rgba(201, 162, 77, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .login-header h1 {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(201, 162, 77, 0.2);
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(201, 162, 77, 0.2);
+        }
+        
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--light), var(--gold));
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(201, 162, 77, 0.4);
+        }
+        
+        .btn-login:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert.show {
+            display: block;
+        }
+        
+        .alert-error {
+            background: rgba(211, 47, 47, 0.2);
+            color: #d32f2f;
+            border: 1px solid #d32f2f;
+        }
+        
+        .alert-info {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+            border: 1px solid #2196f3;
+        }
+        
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--mid);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        body.rtl .lang-toggle {
+            right: auto;
+            left: 20px;
+        }
+        
+        .lang-toggle:hover {
+            background: var(--light);
+        }
+        
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        
+        .footer-text a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<button class="lang-toggle" onclick="toggleLanguage()">
+    <span lang="en">العربية</span><span lang="ar">English</span>
+</button>
+
+<div class="login-container">
+    <div class="login-header">
+        <h1><span lang="en">Admin Login</span><span lang="ar">تسجيل الدخول</span></h1>
+        <p><span lang="en">Ace Woodwork & Decor</span><span lang="ar">آيس لأعمال الخشب والديكور</span></p>
+    </div>
+    
+    <div id="alertBox" class="alert"></div>
+    
+    <form id="loginForm">
+        <div class="form-group">
+            <label><span lang="en">Password</span><span lang="ar">كلمة المرور</span></label>
+            <input type="password" id="password" placeholder="••••••••" required autofocus>
+        </div>
+        
+        <button type="submit" class="btn-login">
+            <span lang="en">Login</span><span lang="ar">دخول</span>
+        </button>
+    </form>
+    
+    <div class="footer-text">
+        <p><span lang="en">Forgot your password? Contact the administrator.</span><span lang="ar">هل نسيت كلمة المرور؟ اتصل بالمسؤول.</span></p>
+    </div>
+</div>
+
+<script>
+    // Configuration
+    const ADMIN_PASSWORD_HASH = 'admin123'; // In production, use proper hashing
+    const SESSION_TIMEOUT = 24 * 60 * 60 * 1000; // 24 hours
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if already logged in
+        const sessionToken = localStorage.getItem('admin_session');
+        if (sessionToken && isSessionValid(sessionToken)) {
+            redirectToDashboard();
+        }
+        
+        // Restore language preference
+        if (localStorage.getItem('lang') === 'ar') {
+            document.body.classList.add('rtl');
+        }
+        
+        // Form submit
+        document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    });
+    
+    function toggleLanguage() {
+        document.body.classList.toggle('rtl');
+        localStorage.setItem('lang', document.body.classList.contains('rtl') ? 'ar' : 'en');
+    }
+    
+    function handleLogin(e) {
+        e.preventDefault();
+        
+        const password = document.getElementById('password').value;
+        
+        // Simple password validation (in production, use proper authentication)
+        if (password === ADMIN_PASSWORD_HASH) {
+            // Create session token
+            const sessionToken = generateSessionToken();
+            localStorage.setItem('admin_session', sessionToken);
+            localStorage.setItem('admin_session_time', Date.now());
+            
+            showAlert('Login successful! Redirecting...', 'info');
+            setTimeout(() => {
+                redirectToDashboard();
+            }, 1000);
+        } else {
+            showAlert('Invalid password. Please try again.', 'error');
+            document.getElementById('password').value = '';
+            document.getElementById('password').focus();
+        }
+    }
+    
+    function generateSessionToken() {
+        return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+    }
+    
+    function isSessionValid(token) {
+        const sessionTime = localStorage.getItem('admin_session_time');
+        if (!sessionTime) return false;
+        
+        const elapsed = Date.now() - parseInt(sessionTime);
+        return elapsed < SESSION_TIMEOUT;
+    }
+    
+    function redirectToDashboard() {
+        window.location.href = 'dashboard-enhanced.html';
+    }
+    
+    function showAlert(message, type) {
+        const alertBox = document.getElementById('alertBox');
+        alertBox.textContent = message;
+        alertBox.className = `alert alert-${type} show`;
+        
+        if (type === 'error') {
+            setTimeout(() => alertBox.classList.remove('show'), 5000);
+        }
+    }
+</script>
+
+</body>
+</html>
