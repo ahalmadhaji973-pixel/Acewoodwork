@@ -523,7 +523,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
         formData.append('email', email);
         formData.append('message', message);
         
-        const response = await fetch('https://formspree.io/f/xyzpqwer', {
+        const response = await fetch('https://formspree.io/f/xqewzzpb', {
             method: 'POST',
             body: formData
         });
@@ -542,49 +542,6 @@ document.getElementById('contactForm').addEventListener('submit', async function
         submitBtn.innerHTML = originalText;
     }
 });
-
-function showFormStatus(message, type) {
-    const formStatus = document.getElementById('formStatus');
-    formStatus.textContent = message;
-    formStatus.style.display = 'block';
-    
-    if (type === 'success') {
-        formStatus.style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
-        formStatus.style.color = '#4CAF50';
-        formStatus.style.borderLeft = '4px solid #4CAF50';
-    } else {
-        formStatus.style.backgroundColor = 'rgba(244, 67, 54, 0.2)';
-        formStatus.style.color = '#F44336';
-        formStatus.style.borderLeft = '4px solid #F44336';
-    }
-    
-    setTimeout(() => {
-        formStatus.style.display = 'none';
-    }, 5000);
-}
-
-
-function showFormStatus(message, type) {
-    const formStatus = document.getElementById('formStatus');
-    formStatus.textContent = message;
-    formStatus.style.display = 'block';
-    
-    if (type === 'success') {
-        formStatus.style.backgroundColor = 'rgba(76, 175, 80, 0.2)';
-        formStatus.style.color = '#4CAF50';
-        formStatus.style.borderLeft = '4px solid #4CAF50';
-    } else {
-        formStatus.style.backgroundColor = 'rgba(244, 67, 54, 0.2)';
-        formStatus.style.color = '#F44336';
-        formStatus.style.borderLeft = '4px solid #F44336';
-    }
-    
-    // Auto-hide after 5 seconds
-    setTimeout(() => {
-        formStatus.style.display = 'none';
-    }, 5000);
-}
-
 
 function showFormStatus(message, type) {
     const formStatus = document.getElementById('formStatus');
