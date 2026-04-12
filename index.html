@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=0.5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ace Woodwork & Decor | Luxury Interiors</title>
 
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -437,6 +437,7 @@ body.rtl .controls { right: auto; left: 25px; }
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="assets/js/theme-lang.js"></script>
 <script>
 // Netlify Identity
 if (window.netlifyIdentity) {
@@ -466,13 +467,7 @@ socialToggle.onclick = () => {
     socialToggle.innerHTML = socialList.classList.contains("hidden") ? '<i class="fas fa-plus"></i>' : '<i class="fas fa-times"></i>'; 
 };
 
-// Language Toggle
-function toggleLanguage() {
-    const isAr = document.body.classList.toggle("rtl");
-    document.getElementById("langBtn").innerText = isAr ? "English" : "العربية";
-    localStorage.setItem("lang", isAr ? "ar" : "en");
-}
-if(localStorage.getItem("lang") === "ar") toggleLanguage();
+// Language Toggle is now handled by theme-lang.js
 
 // Hero Slider
 let sIdx = 0; const slides = document.querySelectorAll(".hero-slide");
@@ -482,7 +477,7 @@ if(slides.length > 0) {
 
 // Theme & Back to Top
 const tBtn = document.getElementById("themeToggle"), up = document.getElementById("backToTop");
-tBtn.onclick = () => { const isL = document.body.classList.toggle("light-mode"); tBtn.innerHTML = isL ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>'; };
+tBtn.onclick = () => { toggleTheme(); };
 window.onscroll = () => { if(window.scrollY > 400) up.classList.add("show"); else up.classList.remove("show"); };
 up.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </script>

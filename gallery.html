@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery | Ace Woodwork & Decor</title>
 
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -101,13 +101,16 @@
 
 <div class="controls">
     <button class="control-btn" id="langBtn" onclick="toggleLanguage()">العربية</button>
-    <button class="control-btn" onclick="document.body.classList.toggle('light-mode')"><i class="fas fa-adjust"></i></button>
+    <button class="control-btn" id="themeToggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
 </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="assets/js/theme-lang.js"></script>
 <script>
-    const GITHUB_USER = "Ace313780"; 
-    const REPO_NAME = "AceWoodwork";
+    // Dynamically detect repository from current page
+    const repoUrl = window.location.origin;
+    const GITHUB_USER = "ahalmadhaji973-pixel"; 
+    const REPO_NAME = "Acewoodwork";
 
     async function loadGallery() {
         const grid = document.getElementById('main-gallery-grid');
@@ -155,16 +158,12 @@
         lb.classList.add('active');
     }
 
-    function toggleLanguage() {
-        const isAr = document.body.classList.toggle("rtl");
-        document.getElementById("langBtn").innerText = isAr ? "English" : "العربية";
-        localStorage.setItem("lang", isAr ? "ar" : "en");
-    }
+    // toggleLanguage is now defined in theme-lang.js
 
     window.onload = () => {
         loadGallery();
         AOS.init({ duration: 800, once: true });
-        if(localStorage.getItem("lang") === "ar") toggleLanguage();
+        // Theme and language are initialized by theme-lang.js
         setTimeout(() => { document.getElementById('loader').style.opacity='0'; setTimeout(()=>document.getElementById('loader').remove(),500); }, 800);
     };
 

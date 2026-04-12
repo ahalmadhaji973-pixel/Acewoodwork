@@ -19,7 +19,7 @@
     --text:#f5f1ed;
 }
 
-body.light{
+body.light-mode{
     --bg:#f5f5f5;
     --text:#1a1a1a;
     --dark:#ffffff;
@@ -335,7 +335,7 @@ footer{
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+<script src="assets/js/theme-lang.js"></script>
 <script>
 // Initialize AOS
 AOS.init({
@@ -353,42 +353,25 @@ setInterval(() => {
     slides[current].classList.add("active");
 }, 4500);
 
-// --- نظام تبديل اللغة ---
+// Language toggle is now handled by theme-lang.js
 const langBtn = document.getElementById("langToggle");
-function toggleLang() {
-    const isAr = document.body.classList.toggle("rtl");
-    langBtn.innerText = isAr ? "EN" : "AR";
-    localStorage.setItem("userLang", isAr ? "ar" : "en");
-    AOS.refresh();
-}
-
-langBtn.onclick = toggleLang;
-
-// استعادة اللغة المفضلة عند التحميل
-if(localStorage.getItem("userLang") === "ar") {
-    document.body.classList.add("rtl");
-    langBtn.innerText = "EN";
-}
-
-// Dark Mode Toggle
-const themeToggle = document.getElementById("themeToggle");
-const icon = themeToggle.querySelector("i");
-
-if(localStorage.theme === "light") {
-    document.body.classList.add("light");
-    icon.classList.replace("fa-moon", "fa-sun");
-}
-
-themeToggle.onclick = () => {
-    document.body.classList.toggle("light");
-    const isLight = document.body.classList.contains("light");
-    localStorage.theme = isLight ? "light" : "dark";
-    if(isLight) {
-        icon.classList.replace("fa-moon", "fa-sun");
-    } else {
-        icon.classList.replace("fa-sun", "fa-moon");
+if (langBtn) {
+    langBtn.onclick = () => {
+        const isAr = toggleLanguage();
+        langBtn.innerText = isAr ? "EN" : "AR";
+        AOS.refresh();
+    };
+    // Set initial state
+    if (document.body.classList.contains("rtl")) {
+        langBtn.innerText = "EN";
     }
-};
+}
+
+// Theme toggle is now handled by theme-lang.js
+const themeToggle = document.getElementById("themeToggle");
+if (themeToggle) {
+    themeToggle.onclick = () => { toggleTheme(); };
+}
 </script>
 
 </body>
